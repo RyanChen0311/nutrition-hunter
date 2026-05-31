@@ -734,7 +734,7 @@ function buildCatCard(food) {
   })();
 
   const deleteBtn = food._user
-    ? `<button class="cat-card-delete" onclick="event.stopPropagation(); deleteUserFood(${food.id})" title="刪除">🗑</button>`
+    ? `<button class="cat-card-delete" onclick="event.stopPropagation(); deleteUserFood(${food.id})">移除</button>`
     : "";
 
   card.innerHTML = `
