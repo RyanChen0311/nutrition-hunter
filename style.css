@@ -1,0 +1,731 @@
+/* ── Reset & Base ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { zoom: 0.75; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 20px;
+  background: #f5f5f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────────── */
+.app-wrap {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app-title {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Glass card */
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+}
+
+/* ── Input Panel ─────────────────────────────────────────────────────────────── */
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 24px;
+  color: #6b6b6b;
+  font-weight: 500;
+}
+
+.field input,
+.field select {
+  height: 52px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1a1a1a;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: #4caf50;
+}
+
+/* Exercise rows */
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.exercise-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.exercise-row select {
+  flex: 0 0 auto;
+  width: 240px;
+  height: 52px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 24px;
+  background: rgba(255,255,255,0.8);
+}
+
+.time-label {
+  flex-shrink: 0;
+  font-size: 26px;
+  font-weight: 500;
+  color: #1a1a1a;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 8px;
+  padding: 0 14px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.hrs-input {
+  width: 90px;
+  flex-shrink: 0;
+  height: 52px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 24px;
+  background: rgba(255,255,255,0.8);
+  text-align: center;
+}
+
+.btn-remove {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(244, 67, 54, 0.15);
+  color: #f44336;
+  font-size: 28px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-add-ex {
+  font-size: 26px;
+  padding: 8px 16px;
+  border: 1px dashed rgba(0,0,0,0.2);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  color: #6b6b6b;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 32px;
+  font-size: 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-primary:hover { background: #388e3c; }
+.btn-primary:active { background: #2e7d32; }
+
+/* ── Main Content ─────────────────────────────────────────────────────────────── */
+.main-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Hexagon column */
+.hex-col {
+  flex: 0 0 auto;
+  width: 480px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+#hexCanvas {
+  display: block;
+  cursor: default;
+}
+
+/* Stats below chart */
+.stats-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  background: rgba(0,0,0,0.06);
+}
+
+/* Recommend column */
+.rec-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Coverage badges */
+.coverage-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.badge {
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.badge-ok  { background: rgba(76,175,80,0.18);  color: #2e7d32; }
+.badge-low { background: rgba(255,193,7,0.25);  color: #795548; }
+.badge-bad { background: rgba(244,67,54,0.18);  color: #c62828; }
+
+/* Food cards */
+.food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 560px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.food-list::-webkit-scrollbar { width: 6px; }
+.food-list::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); border-radius: 3px; }
+.food-list::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius: 3px; }
+.food-list::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.30); }
+
+.food-card {
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 12px;
+  padding: 16px 18px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+
+.food-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border-color: rgba(76,175,80,0.4);
+}
+
+.food-card.active {
+  border-color: rgba(33,150,243,0.5);
+  box-shadow: 0 0 0 2px rgba(33,150,243,0.15);
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.food-name {
+  font-weight: 600;
+  font-size: 26px;
+}
+
+.food-amount {
+  font-size: 22px;
+  color: #6b6b6b;
+}
+
+.food-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  color: #6b6b6b;
+}
+
+.bar-label { width: 80px; flex-shrink: 0; }
+
+.bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: #4caf50;
+  transition: width 0.4s;
+}
+
+.bar-val { width: 52px; text-align: right; flex-shrink: 0; }
+
+/* Tips */
+.tips-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tips-list li {
+  font-size: 24px;
+  color: #6b6b6b;
+  padding: 10px 16px;
+  background: rgba(255,193,7,0.10);
+  border-radius: 8px;
+  border-left: 3px solid #ffc107;
+}
+
+/* ── Manual Adjuster ─────────────────────────────────────────────────────────── */
+.adjuster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+/* ── Food Catalog Axis ───────────────────────────────────────────────────────── */
+.catalog-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.catalog-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.catalog-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #6b6b6b;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.filter-btn.active {
+  background: #4caf50;
+  border-color: #4caf50;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Horizontal scroll track */
+.catalog-track-wrap {
+  position: relative;
+}
+
+.catalog-track {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding: 6px 4px 14px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.catalog-track::-webkit-scrollbar { height: 6px; }
+.catalog-track::-webkit-scrollbar-track { background: rgba(0,0,0,0.04); border-radius: 3px; }
+.catalog-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius: 3px; }
+.catalog-track::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.30); }
+
+/* Individual catalog card */
+.cat-card {
+  flex: 0 0 200px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1.5px solid rgba(0, 0, 0, 0.07);
+  border-radius: 14px;
+  padding: 14px;
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.12s;
+  user-select: none;
+}
+
+.cat-card:hover {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.10);
+  border-color: rgba(76, 175, 80, 0.45);
+  transform: translateY(-2px);
+}
+
+.cat-card.selected {
+  border-color: #4caf50;
+  background: rgba(76, 175, 80, 0.08);
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.25);
+}
+
+.cat-card.viewing {
+  border-color: #2196f3;
+  background: rgba(33, 150, 243, 0.07);
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.22);
+}
+
+.cat-card.viewing .cat-card-name {
+  color: #1565c0;
+}
+
+.cat-card-name {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cat-card-cat {
+  font-size: 20px;
+  color: #6b6b6b;
+  margin-bottom: 10px;
+}
+
+.cat-card-macros {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cat-macro-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  color: #6b6b6b;
+}
+
+.cat-macro-label { width: 36px; flex-shrink: 0; }
+
+.cat-macro-bar {
+  flex: 1;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.07);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.cat-macro-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: #4caf50;
+}
+
+.cat-macro-val { width: 38px; text-align: right; flex-shrink: 0; }
+
+.cat-card-add {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 8px;
+  border: none;
+  background: rgba(76, 175, 80, 0.15);
+  color: #2e7d32;
+  font-size: 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cat-card-add:hover { background: rgba(76, 175, 80, 0.30); }
+
+/* 未計算熱量前，加入今日按鈕呈灰色且無作用 */
+body:not(.has-target) .cat-card-add {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.06) !important;
+  color: #999 !important;
+}
+.cat-card-add.added {
+  background: #4caf50;
+  color: #fff;
+}
+
+/* Scroll arrow buttons */
+.scroll-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.90);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.scroll-arrow:hover { background: #fff; }
+.scroll-arrow.left  { left: -18px; }
+.scroll-arrow.right { right: -18px; }
+
+/* ── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .main-content { flex-direction: column; }
+  .hex-col { width: 100%; }
+}
+
+/* Deficit panel */
+#deficit-panel { max-width: 800px; }
+
+/* Steps column */
+.steps-col {
+  flex: 0 0 220px;
+}
+
+.steps-card {
+  padding: 20px 18px;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #4caf50;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.step-text {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.step-text small {
+  display: block;
+  font-size: 20px;
+  font-weight: 400;
+  color: #6b6b6b;
+  margin-top: 3px;
+}
+
+/* Calorie badge in exercise row */
+.cal-badge {
+  flex-shrink: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #e65100;
+  background: rgba(255,152,0,0.12);
+  border-radius: 8px;
+  padding: 0 16px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .steps-col { display: none; }
+}
+
+/* Cancel recommend button */
+.btn-cancel {
+  background: transparent;
+  color: #c62828;
+  border: 1.5px solid #c62828;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 28px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-cancel:hover { background: rgba(198,40,40,0.07); }
+
+/* Eaten foods list */
+.eaten-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.03);
+  margin-bottom: 8px;
+}
+
+.eaten-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.eaten-name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.eaten-cat {
+  font-size: 18px;
+  color: #6b6b6b;
+}
+
+.eaten-macros {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 2px;
+}
+
+.eaten-macro {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Add food form grid */
+.add-food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* Macro dominant badge on catalog cards */
+.macro-badge {
+  flex-shrink: 0;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 6px;
+  white-space: nowrap;
+}
+.macro-carb { background: rgba(255,152,0,0.18); color: #bf6000; }
+.macro-prot { background: rgba(76,175,80,0.18);  color: #2e7d32; }
+.macro-fat  { background: rgba(244,67,54,0.15);  color: #c62828; }
+
+/* Target grams grid below hexagon */
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 12px;
+  width: 100%;
+}
+
+.tg-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0,0,0,0.04);
+  border-radius: 8px;
+  padding: 6px 8px;
+}
+
+.tg-label {
+  font-size: 18px;
+  color: #6b6b6b;
+  font-weight: 500;
+}
+
+.tg-val {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* Utility */
+.hidden { display: none !important; }
+.muted  { color: #6b6b6b; font-size: 24px; }

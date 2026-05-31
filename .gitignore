@@ -1,0 +1,5 @@
+.venv/
+nutrition/calc.so
+nutrition/calc.dll
+__pycache__/
+*.pyc
