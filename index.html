@@ -640,7 +640,8 @@ async function loadCatalog() {
     const res      = await fetch("nutrition/food_db.json");
     const baseFoods = await res.json();
     // 合併 localStorage 使用者新增的食物
-    const userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]");
+    const userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]")
+      .map(f => ({ ...f, _user: true }));   // 確保舊資料也有 _user 標記
     allFoods = [...baseFoods, ...userFoods];
 
     buildFilterBtns();
