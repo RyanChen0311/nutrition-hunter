@@ -2,7 +2,7 @@
 
 每日營養追蹤與飲食推薦系統，結合六角形雷達圖視覺化，幫助使用者掌握每日六大營養素攝取狀況。
 
-**🌐 線上體驗：** https://ryandchen0311.github.io/nutrition_of_hunter/
+**🌐 線上體驗：** https://ryanchen0311.github.io/nutrition_of_hunter/
 
 ---
 

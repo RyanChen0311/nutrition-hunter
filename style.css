@@ -504,6 +504,19 @@ body {
 
 .cat-card-add:hover { background: rgba(76, 175, 80, 0.30); }
 
+.cat-card-delete {
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.5;
+  padding: 0 2px;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+.cat-card-delete:hover { opacity: 1; }
+
 /* 未計算熱量前，加入今日按鈕呈灰色且無作用 */
 body:not(.has-target) .cat-card-add {
   opacity: 0.35;

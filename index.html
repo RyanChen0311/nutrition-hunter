@@ -574,6 +574,23 @@ function toggleAddFoodForm() {
   btn.textContent = hidden ? "展開 ▾" : "收起 ▲";
 }
 
+function deleteUserFood(foodId) {
+  // 從 allFoods 移除
+  allFoods = allFoods.filter(f => f.id !== foodId);
+  // 從 localStorage 移除
+  const userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]")
+    .filter(f => f.id !== foodId);
+  localStorage.setItem("userFoods", JSON.stringify(userFoods));
+  // 若已加入今日也一起移除
+  if (eatenFoods[foodId]) {
+    delete eatenFoods[foodId];
+    updateDeficitPanel();
+    renderEatenList();
+    updateRecommendBtn();
+  }
+  renderCatalog();
+}
+
 function submitAddFood() {
   const name   = document.getElementById("af-name").value.trim();
   const cat    = document.getElementById("af-cat").value;
@@ -589,7 +606,8 @@ function submitAddFood() {
 
   const newId = Math.max(...allFoods.map(f => f.id), 0) + 1;
   const food  = { id: newId, name, category: cat, carb,
-                  protein: prot, fat, fiber, micro_score: micro, sodium };
+                  protein: prot, fat, fiber, micro_score: micro, sodium,
+                  _user: true };
 
   // 存入 localStorage（跨次瀏覽持久保存）
   const userFoods = JSON.parse(localStorage.getItem("userFoods") || "[]");
@@ -714,10 +732,17 @@ function buildCatCard(food) {
              fat:     { label: "脂肪",  cls: "macro-fat" } }[top];
   })();
 
+  const deleteBtn = food._user
+    ? `<button class="cat-card-delete" onclick="event.stopPropagation(); deleteUserFood(${food.id})" title="刪除">🗑</button>`
+    : "";
+
   card.innerHTML = `
     <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
       <div class="cat-card-name" title="${food.name}" style="flex:1;min-width:0;">${food.name}</div>
-      <span class="macro-badge ${macroWinner.cls}">${macroWinner.label}</span>
+      <div style="display:flex;align-items:center;gap:4px;">
+        <span class="macro-badge ${macroWinner.cls}">${macroWinner.label}</span>
+        ${deleteBtn}
+      </div>
     </div>
     <div class="cat-card-cat">${food.category}</div>
     <div class="cat-card-macros">
