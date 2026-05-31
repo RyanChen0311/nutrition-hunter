@@ -507,15 +507,16 @@ body {
 .cat-card-delete {
   flex-shrink: 0;
   border: none;
-  background: transparent;
-  font-size: 14px;
+  background: rgba(244,67,54,0.12);
+  border-radius: 8px;
+  font-size: 32px;
   cursor: pointer;
-  opacity: 0.5;
-  padding: 0 2px;
+  opacity: 0.75;
+  padding: 2px 8px;
   line-height: 1;
-  transition: opacity 0.15s;
+  transition: opacity 0.15s, background 0.15s;
 }
-.cat-card-delete:hover { opacity: 1; }
+.cat-card-delete:hover { opacity: 1; background: rgba(244,67,54,0.25); }
 
 /* 未計算熱量前，加入今日按鈕呈灰色且無作用 */
 body:not(.has-target) .cat-card-add {
