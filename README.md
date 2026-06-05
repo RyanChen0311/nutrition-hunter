@@ -94,16 +94,19 @@ python3 -m http.server 8080
 # 開啟 http://localhost:8080/
 ```
 
-### Flask 後端版（開發用）
+### Flask 後端版（開發用，需 Python ≥ 3.10）
 
 ```bash
 cd nutrition_of_hunter
 python3 -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install flask
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
 python -X utf8 nutrition/server.py
 # 開啟 http://127.0.0.1:5000/
 ```
+
+> Flask 後端版提供 `/api/targets`、`/api/recommend`、`/api/foods` REST API，
+> 功能與純靜態版完全相同，適合需要伺服器端擴充的情境。
 
 ---
 
