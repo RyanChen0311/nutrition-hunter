@@ -704,10 +704,9 @@ body:not(.has-target) .cat-card-add {
   flex-shrink: 0;
   font-size: 28px;
   font-weight: 700;
-  color: #e65100;
-  background: rgba(255,152,0,0.12);
-  border-radius: 8px;
-  padding: 0 16px;
+  color: #c62828;
+  background: none;
+  padding: 0;
   height: 52px;
   display: flex;
   align-items: center;
