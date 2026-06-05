@@ -28,6 +28,7 @@ function calcNutritionTargets(W, H, A, sex, exercises) {
     fat_g:       r(0.30 * tdee / 9),
     fiber_g:     r(tdee / 1000 * 14),
     micro_score: 100.0,
+    sodium_mg:   2300,   // WHO daily sodium limit (mg)
   };
 }
 
