@@ -4,6 +4,10 @@
 
 **🌐 線上體驗：** https://ryanchen0311.github.io/nutrition_of_hunter/
 
+> 📱 **手機使用提示：** 請將瀏覽器切換為「電腦版網站」模式以獲得最佳顯示效果。
+> - **Chrome（Android）**：右上角 `⋮` → 勾選「電腦版網站」
+> - **Safari（iPhone）**：網址列左側 `AA` → 選擇「要求電腦版網站」
+
 ---
 
 ## 功能特色
