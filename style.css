@@ -558,8 +558,84 @@ body:not(.has-target) .cat-card-add {
 
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 700px) {
+  html { zoom: 1; }
+
+  body { font-size: 16px; }
+
+  .app-wrap { padding: 16px 12px; gap: 16px; }
+  .app-title { font-size: 26px; }
+
+  .card { padding: 14px; border-radius: 12px; }
+
+  /* Input panel */
+  .input-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+  .field label { font-size: 14px; }
+  .field input, .field select { font-size: 16px; height: 42px; }
+
+  /* Exercise row */
+  .exercise-row { flex-wrap: wrap; gap: 8px; }
+  .exercise-row select { width: 100%; flex: 1 1 100%; font-size: 16px; height: 42px; }
+  .hrs-input { width: 72px; font-size: 16px; height: 42px; }
+  .cal-badge { font-size: 15px; height: 42px; padding: 0 10px; }
+  .btn-add-ex { font-size: 15px; }
+
+  /* Buttons */
+  .btn-primary { font-size: 16px; padding: 10px 20px; }
+  .btn-cancel  { font-size: 16px; padding: 10px 16px; }
+
+  /* Main layout */
   .main-content { flex-direction: column; }
   .hex-col { width: 100%; }
+  .steps-col { display: none; }
+
+  /* Shared text */
+  .section-title { font-size: 18px; }
+  .muted { font-size: 15px; }
+
+  /* Food cards in recommend panel */
+  .food-name { font-size: 16px; }
+  .food-amount { font-size: 13px; }
+  .bar-row { font-size: 13px; }
+  .bar-label { width: 52px; }
+  .bar-val { width: 40px; }
+
+  /* Tips */
+  .tips-list li { font-size: 15px; }
+
+  /* Catalog filter */
+  .filter-btn { font-size: 14px; padding: 5px 12px; }
+
+  /* Catalog cards */
+  .cat-card { flex: 0 0 158px; padding: 10px; }
+  .cat-card-name { font-size: 15px; }
+  .cat-card-cat  { font-size: 13px; }
+  .cat-macro-row { font-size: 12px; }
+  .cat-macro-label { width: 28px; }
+  .cat-macro-val { width: 30px; }
+  .cat-card-add { font-size: 14px; padding: 6px 0; }
+  .cat-card-delete { font-size: 13px; padding: 2px 7px; }
+  .macro-badge { font-size: 12px; }
+
+  /* Stats pill */
+  .stat-pill { font-size: 13px; padding: 5px 10px; }
+
+  /* Badges */
+  .badge { font-size: 13px; padding: 3px 10px; }
+
+  /* Eaten panel */
+  .eaten-name  { font-size: 15px; }
+  .eaten-cat   { font-size: 13px; }
+  .eaten-macro { font-size: 13px; }
+
+  /* Target grid */
+  .tg-label { font-size: 13px; }
+  .tg-val   { font-size: 14px; }
+
+  /* Deficit panel — override inline styles */
+  #deficit-list span[style] { font-size: 15px !important; width: auto !important; }
+
+  /* Add food grid */
+  .add-food-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Deficit panel */

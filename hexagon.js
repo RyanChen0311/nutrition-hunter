@@ -165,7 +165,8 @@ function draw() {
 
     // Orange vertex labels (excess grams)
     if (_excessGrams) {
-      _ctx.font         = "bold 17px sans-serif";
+      const _vfs = Math.max(10, Math.round(_size * 0.043));
+      _ctx.font         = `bold ${_vfs}px sans-serif`;
       _ctx.textAlign    = "center";
       _ctx.textBaseline = "middle";
       for (let i = 0; i < NUM_POINTS; i++) {
@@ -193,7 +194,8 @@ function draw() {
   }
 
   // ── Vertex numbers (% at each intake vertex) ──
-  _ctx.font         = "bold 17px sans-serif";
+  const _vfs = Math.max(10, Math.round(_size * 0.043));
+  _ctx.font         = `bold ${_vfs}px sans-serif`;
   _ctx.textAlign    = "center";
   _ctx.textBaseline = "middle";
   for (let i = 0; i < NUM_POINTS; i++) {
@@ -217,13 +219,14 @@ function draw() {
   }
 
   // ── Axis labels (name + optional target grams) ──
+  const _afs = Math.max(11, Math.round(_size * 0.05));
   _ctx.textAlign    = "center";
   _ctx.textBaseline = "middle";
   for (let i = 0; i < NUM_POINTS; i++) {
     const [x, y] = _pt(i, 1.38);
     const ratio  = intakeRatios[i];
 
-    _ctx.font      = "bold 20px sans-serif";
+    _ctx.font      = `bold ${_afs}px sans-serif`;
     _ctx.fillStyle = _axisColor(ratio);
     _ctx.fillText(AXIS_LABELS[i], x, y);
   }
