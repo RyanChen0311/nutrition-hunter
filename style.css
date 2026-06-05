@@ -575,7 +575,7 @@ body:not(.has-target) .cat-card-add {
   .exercise-row { flex-wrap: wrap; gap: 8px; }
   .exercise-row select { width: 100%; flex: 1 1 100%; font-size: 16px; height: 42px; }
   .hrs-input { width: 72px; font-size: 16px; height: 42px; }
-  .cal-badge { font-size: 15px; height: 42px; padding: 0 10px; }
+  .cal-badge { font-size: 14px; height: auto; padding: 0; background: none; border-radius: 0; }
   .btn-add-ex { font-size: 15px; }
 
   /* Buttons */
